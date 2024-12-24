@@ -8,7 +8,7 @@ class IntegerRange:
         self.max_amount = max_amount
 
     def __set_name__(self, owner: str, name: str) -> None:
-        self.name = '_' + name
+        self.name = "_" + name
 
     def __get__(self, instance: Any, owner: str) -> Any:
         return getattr(instance, self.name, None)
@@ -53,11 +53,12 @@ class AdultSlideLimitationValidator(SlideLimitationValidator):
 
 
 class Slide:
-    def __init__(self, name: str, limitation_class: type[SlideLimitationValidator]) -> None:
+    def __init__(self, name: str, limitation_class:
+    type[SlideLimitationValidator]) -> None:
         self.name = name
         self.limitation_class = limitation_class
 
-    def can_access(self, visitor: Any):
+    def can_access(self, visitor: Any) -> bool:
         try:
             self.limitation_class(visitor.age, visitor.weight, visitor.height)
             return True
